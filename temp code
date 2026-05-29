@@ -1,0 +1,48 @@
+You are helping me start an Isaac Sim + ROS2 autonomous driving project from zero.
+
+Goal:
+Build a simple working baseline where a simulated car in Isaac Sim can drive automatically using ROS2.
+
+Assume I currently have nothing set up in the project.
+
+Please help me create the full minimum project step by step.
+
+Requirements:
+
+1. Create a ROS2 Python package named auto_drive.
+2. Add all required dependencies in package.xml, including:
+    * rclpy
+    * sensor_msgs
+    * ackermann_msgs
+    * cv_bridge
+    * OpenCV if needed
+3. Create a ROS2 node named lane_follow_node.py.
+4. The node should:
+    * Subscribe to /camera/image_raw
+    * Process the camera image with OpenCV
+    * Detect a simple lane center or road center
+    * Compute steering with a simple proportional controller
+    * Publish ackermann_msgs/msg/AckermannDriveStamped to /ackermann_cmd
+    * Use a slow constant speed like 0.5
+    * Stop or drive slowly if no lane is detected
+5. Update setup.py so the node can be launched with:
+    ros2 run auto_drive lane_follow_node
+6. Explain how to build and run the package:
+    * colcon build
+    * source install/setup.bash
+    * ros2 run auto_drive lane_follow_node
+7. Also explain the Isaac Sim side at a high level:
+    * Enable ROS2 Bridge
+    * Add a simulated vehicle
+    * Add a camera sensor
+    * Publish camera data to /camera/image_raw
+    * Subscribe to /ackermann_cmd
+    * Connect /ackermann_cmd to the vehicle controller
+8. Include debugging commands:
+    * ros2 topic list
+    * ros2 topic echo /ackermann_cmd
+    * ros2 topic hz /camera/image_raw
+9. Keep the implementation simple and beginner-friendly.
+10. Do not over-engineer with Nav2, SLAM, or deep learning yet.
+
+The final result should be a minimum viable autonomous driving baseline, not a perfect self-driving system.
